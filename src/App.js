@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Container from "@mui/material/Container";
+import Header from "./components/Header/Header";
+const App = () => {
+  const [meanings, setMeanings] = useState([]);
+  const [word, setWord] = useState("");
+  const [category, setCategory] = useState("en");
+  const dictionaryAPI = async () => {
+    try {
+      const data = await axios.get(
+        "https://api.dictionaryapi.dev/api/v2/entries/en/hello"
+      );
 
-function App() {
+      setMeanings(data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(meanings);
+  useEffect(() => {
+    dictionaryAPI();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: "100vh" }}>
+      <Container
+        maxWidth="md"
+        style={{ display: "flex", flexDirection: "column", height: "100vh" }}
+      >
+        <Header
+          category={category}
+          setCategory={setCategory}
+          word={word}
+          setWord={setWord}
+        />
+      </Container>
     </div>
   );
-}
+};
 
 export default App;
