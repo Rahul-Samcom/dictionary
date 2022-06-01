@@ -1,0 +1,27 @@
+.meanings {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 55vh;
+  border: 10px solid black;
+  border-radius: 10px;
+  padding: 10px 20px;
+  overflow-x: hidden;
+}
+
+.subtitle {
+  font-size: 5vw;
+}
+
+.example {
+  color: blue;
+}
+
+.singleMean {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 5px 0px;
+}

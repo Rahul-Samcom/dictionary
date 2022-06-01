@@ -3,10 +3,19 @@ import "./Header.css";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import categories from "../../data/category";
-const Header = ({ category, setCategory, word, setWord }) => {
+
+const Header = ({ category, setCategory, word, setWord, LightMode }) => {
+  const handleChange = (e) => {
+    setCategory(e.target.value);
+    setWord("");
+  };
+
   return (
-    <div className="header">
-      <span className="title"> {word ? word : "Word hunt"}</span>
+    <div
+      className="header"
+      style={{ backgroundColor: LightMode ? "#fff" : "#808080" }}
+    >
+      <span className="title"> {word ? word : "Dictionary"}</span>
       <div className="inputs">
         <TextField
           className="search"
@@ -22,7 +31,7 @@ const Header = ({ category, setCategory, word, setWord }) => {
           select
           label="Language"
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={handleChange}
         >
           {categories.map((option) => (
             <MenuItem key={option.label} value={option.label}>
